@@ -32,3 +32,18 @@ class AddressBook:
             logger.exception(e)
         finally:
             self.client.close()
+
+    def insert_value_to_table(self):
+        """
+
+        :return:
+        """
+        try:
+            sql = "INSERT INTO customers (name, city, state) VALUES (%s, %s, %s)"
+            val = ("Amit", "Jamshedpur", "Jharkhand")
+            return self.mycursor.execute(sql, val)
+        except Exception as e:
+            logger.exception(e)
+        finally:
+            self.client.close()
+
