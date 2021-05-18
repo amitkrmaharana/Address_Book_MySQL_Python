@@ -39,11 +39,16 @@ class AddressBook:
         :return:
         """
         try:
-            sql = "INSERT INTO customers (name, city, state) VALUES (%s, %s, %s)"
-            val = ("Amit", "Jamshedpur", "Jharkhand")
+            sql = "INSERT INTO contacts (name, city, state) VALUES (%s, %s, %s)"
+            val = [
+                ("Amit", "Jamshedpur", "Jharkhand"),
+                ('Peter', 'Longstreet 4', "US"),
+                ('Amy', 'Apple st 652', "Canada"),
+                ('Hannah', 'Mountain 21', "Delhi"),
+                ('Michael', 'Bangalore', "Karnataka")
+            ]
             return self.mycursor.execute(sql, val)
         except Exception as e:
             logger.exception(e)
         finally:
             self.client.close()
-
