@@ -8,20 +8,21 @@ class TestAddressBook:
         host="localhost",
         user="root",
         password="robowars@1amit",
+        database="address_book_new"
     )
     mycursor = client.cursor()
     address_book = AddressBook()
 
-    def test_create_database(self):
+    def test_create_table(self):
         """
 
-        :return: to check if database is created or not
+        :return: to check if table is created or not
         """
         record_list = []
-        database_name = "address_book_new"
-        self.address_book.create_database()
-        self.mycursor.execute("SHOW DATABASES")
+        table_name = "contacts"
+        self.address_book.create_table()
+        self.mycursor.execute("SHOW TABLES")
         record = self.mycursor.fetchall()
         for values in record:
             record_list.append(values[0])
-        assert database_name in record_list, "Database not created"
+        assert table_name in record_list, "Table not created"
