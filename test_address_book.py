@@ -25,4 +25,5 @@ class TestAddressBook:
         record = self.mycursor.fetchall()
         for values in record:
             record_list.append(values[0])
+        self.client.close()
         assert table_name in record_list, "Table not created"

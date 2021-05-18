@@ -26,8 +26,9 @@ class AddressBook:
         :return: created a table
         """
         try:
-            self.mycursor.execute("USE address_book_new")
             return self.mycursor.execute("CREATE TABLE contacts (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(250),"
                                          " city VARCHAR(250), state VARCHAR(250))")
         except Exception as e:
             logger.exception(e)
+        finally:
+            self.client.close()
