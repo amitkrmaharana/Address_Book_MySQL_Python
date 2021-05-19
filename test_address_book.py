@@ -30,8 +30,17 @@ class TestAddressBook:
     def test_insert_values(self):
         """
 
-        :return:
+        :return: to check number of rows inserted
         """
         result = self.address_book.insert_value_to_table()
-        assert result == 5
+        assert result == 5, "Values not inserted"
+
+    def test_delete_row(self):
+        """
+
+        :return: to check if row referenced is deleted or not
+        """
+        name = "Hannah"
+        result = self.address_book.delete_row(name)
+        assert result == 1, "Row not deleted"
 

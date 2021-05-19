@@ -53,3 +53,9 @@ class AddressBook:
             return rows_count
         except Exception as e:
             logger.exception(e)
+
+    def delete_row(self, name):
+        sql = "DELETE FROM contacts WHERE city = 'Mountain 21'"
+        self.mycursor.execute(sql)
+        self.client.commit()
+        return self.mycursor.rowcount
