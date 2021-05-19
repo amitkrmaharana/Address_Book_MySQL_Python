@@ -55,7 +55,28 @@ class AddressBook:
             logger.exception(e)
 
     def delete_row(self, name):
-        sql = "DELETE FROM contacts WHERE city = 'Mountain 21'"
-        self.mycursor.execute(sql)
-        self.client.commit()
-        return self.mycursor.rowcount
+        """
+
+        :param name: row to be deleted is referenced by this parameter
+        :return: rows affected
+        """
+        try:
+            sql = "DELETE FROM contacts WHERE name = %s"
+            self.mycursor.execute(sql, (name,))
+            self.client.commit()
+            return self.mycursor.rowcount
+        except Exception as e:
+            logger.exception(e)
+
+    def update_row(self):
+        """
+        :return: rows count affected
+        """
+        try:
+            sql = "UPDATE contacts SET city = 'Mumbai' WHERE name = 'Peter'"
+            self.mycursor.execute(sql)
+            self.client.commit()
+            return self.mycursor.rowcount
+        except Exception as e:
+            logger.exception(e)
+

@@ -44,3 +44,10 @@ class TestAddressBook:
         result = self.address_book.delete_row(name)
         assert result == 1, "Row not deleted"
 
+    def test_update_row(self):
+        """
+
+        :return: update a row
+        """
+        result = self.address_book.update_row()
+        assert result == 1, "Field not updated"
