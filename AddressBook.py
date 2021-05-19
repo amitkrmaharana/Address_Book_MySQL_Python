@@ -30,8 +30,6 @@ class AddressBook:
                                          " city VARCHAR(250), state VARCHAR(250))")
         except Exception as e:
             logger.exception(e)
-        finally:
-            self.client.close()
 
     def insert_value_to_table(self):
         """
@@ -47,8 +45,11 @@ class AddressBook:
                 ('Hannah', 'Mountain 21', "Delhi"),
                 ('Michael', 'Bangalore', "Karnataka")
             ]
-            return self.mycursor.execute(sql, val)
+            self.mycursor.executemany(sql, val)
+            self.client.commit()
+            self.mycursor.execute("SELECT COUNT(*) FROM contacts")
+            response_list = self.mycursor.fetchone()
+            rows_count = response_list[0]
+            return rows_count
         except Exception as e:
             logger.exception(e)
-        finally:
-            self.client.close()

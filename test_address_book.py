@@ -25,7 +25,6 @@ class TestAddressBook:
         record = self.mycursor.fetchall()
         for values in record:
             record_list.append(values[0])
-        self.client.close()
         assert table_name in record_list, "Table not created"
 
     def test_insert_values(self):
@@ -33,7 +32,6 @@ class TestAddressBook:
 
         :return:
         """
-        self.address_book.insert_value_to_table()
-        rows_count = self.mycursor.rowcount
-        self.client.close()
-        assert rows_count == 1, "Values not inserted to table"
+        result = self.address_book.insert_value_to_table()
+        assert result == 5
+
